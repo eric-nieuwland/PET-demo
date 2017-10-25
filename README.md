@@ -65,8 +65,9 @@ Going the other way around becomes even more of a hassle.
 
 # Conclusion
 
-We have demonstrated how privacy in stored data can be enhanced by splitting sensitive pieces of information from the
-information about the person involved. By applying HMACs on the record links we protect direct disclosure of PII.
+We have demonstrated how protection of stored data can be enhanced by splitting sensitive pieces of information from
+the information about the person involved. By applying HMACs on the record links we protect direct disclosure of
+sensitive data like PII.
 
 To restore the connection between various pieces of information additional processing steps are required.
 In these steps keys are used to compute the proper HMACs.
@@ -75,6 +76,6 @@ system and in backups.
 
 # Warning
 
-Depending on your database management system there may be ways to circumvent the privacy enhancement provided by this
+Depending on your database management system there may be ways to circumvent the protection provided by this
 technique and restore the relation between pieces of information.
 There may or may not be procedures, configurations, and/or techniques to counter such restoration.
