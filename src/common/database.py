@@ -17,7 +17,7 @@ class Database(object):
     database_path = None
     connection = None
 
-    def __init__(self, database_path, must_exist=True):
+    def __init__(self, database_path: Path | str, must_exist=True):
         """
         define a sqlite3 database
         :param database_path: path to the database file
