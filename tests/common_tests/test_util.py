@@ -1,7 +1,6 @@
 import unittest
 
-import os
-import tempfile
+from pathlib import Path
 import shutil
 
 
@@ -11,9 +10,8 @@ from common import util
 class TestMakeDatabasePath(unittest.TestCase):
 
     def tearDown(self):
-        db_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "database")
+        db_path = Path(__file__).parent.parent / "database"
         shutil.rmtree(db_path, ignore_errors=True)
-
 
     def test_non_string(self):
         with self.assertRaises(TypeError):
@@ -29,9 +27,10 @@ class TestMakeDatabasePath(unittest.TestCase):
 
     def test_non_database_path(self):
         res = util.make_database_path("test.py")
-        p, f = os.path.split(res)
+        self.assertIsInstance(res, Path)
+        f = res.name
         self.assertTrue(f, "test.db")
-        _, d = os.path.split(p)
+        d = res.parent
         self.assertTrue(d, "database")
 
 

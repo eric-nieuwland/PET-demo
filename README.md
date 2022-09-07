@@ -3,7 +3,7 @@
 This demo shows how to transform a simple database table to a more privacy friendly version, through a privacy enhancing
 technology or PET.
 
-The demo is written for Python, version 3.6 and up. It requires no additional packages beyond the standard installation.
+The demo is written for Python, version 3.10 and up. It requires no additional packages beyond the standard installation.
 
 The code evolves in steps, each located in the directory `src` and described below.
 When run, each of these scripts will produce a database in the directory `database`, which will be created on demand.

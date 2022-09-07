@@ -55,8 +55,8 @@ webservices.amazon.com
 /onca/xml
 AWSAccessKeyId=00000000000000000000&ItemId=0679722769&Operation=ItemLookup&ResponseGroup=ItemAttributes%2COffers%2CImages%2CReviews&Service=AWSECommerceService&Timestamp=2009-01-01T12%3A00%3A00Z&Version=2009-01-06
                                """.strip()
-        self.sample_hash = "Nace+U3Az4OhN7tISqgs1vdLBHBEijWcBeCqL5xN9xg="
-        self.empty_message_hash = "thNnmggU2ex3L5XXeMNfxf8Wl8STcVZTxscSFEKSxa0="
+        self.sample_hash = "Nace+U3Az4OhN7tISqgs1vdLBHBEijWcBeCqL5xN9xg"
+        self.empty_message_hash = "thNnmggU2ex3L5XXeMNfxf8Wl8STcVZTxscSFEKSxa0"
 
     def test_no_key(self):
         res = hasher.make_hash(self.sample_text)
@@ -88,7 +88,7 @@ class TestMakeIdHash(unittest.TestCase):
 
     def test_zero(self):
         res = hasher.make_id_hash(0, 0)
-        self.assertEqual(res, "ZiCzHykkuMAVR3RfQYJdMiM2+D67E9cjZ4eJ1VTYo+8=")
+        self.assertEqual(res, "ZiCzHykkuMAVR3RfQYJdMiM2+D67E9cjZ4eJ1VTYo+8")
 
 
 if __name__ == '__main__':

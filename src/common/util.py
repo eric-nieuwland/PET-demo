@@ -1,7 +1,7 @@
 """
 util - various common utilities
 """
-import os
+from pathlib import Path
 
 
 def make_database_path(path):
@@ -15,18 +15,16 @@ def make_database_path(path):
     if path == "":
         raise ValueError("path should be a non-empty string")
 
-    path = os.path.abspath(path)  # make sure we have the whole thing
-    directory, file_name = os.path.split(path)
-    parent_directory = os.path.dirname(directory)
+    path = Path(path).resolve()  # make sure we have the whole thing
+    project_directory = path.parent.parent
 
-    database_directory = os.path.join(parent_directory, "database")
-    if not os.path.exists(database_directory):
-        os.mkdir(database_directory)
-    elif not os.path.isdir(database_directory):
+    database_directory = project_directory / "database"
+    if not database_directory.exists():
+        database_directory.mkdir(parents=True, exist_ok=True)
+    elif not database_directory.is_dir():
         raise NotADirectoryError(f"{database_directory}")
 
-    file_base = os.path.splitext(file_name)[0]
     db_ext = ".db"
-    database_path = os.path.join(database_directory, f"{file_base}{db_ext}")
+    database_path = database_directory / f"{path.stem}{db_ext}"
 
     return database_path

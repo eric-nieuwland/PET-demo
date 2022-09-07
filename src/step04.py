@@ -2,7 +2,6 @@
 PET demo - fourth iteration
 
 """
-import os
 
 from common import contacts
 from common import util
@@ -97,7 +96,7 @@ def read_database(database_path):
 
 def main():
     p = util.make_database_path(__file__)
-    if not os.path.isfile(p):
+    if not p.is_file():
         create_database(p)
         fill_database(p)
     output.database_rows(read_database(p))

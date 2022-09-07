@@ -1,7 +1,7 @@
 """
 database - stuff for handling a database
 """
-import os
+from pathlib import Path
 import sqlite3
 
 
@@ -19,16 +19,16 @@ class Database(object):
 
     def __init__(self, database_path, must_exist=True):
         """
-        define an sqlite3 database
+        define a sqlite3 database
         :param database_path: path to the database file
         :param must_exist: whether the database must already exist
         """
-        if must_exist and not os.path.isfile(database_path):
+        database_path = Path(database_path)
+        if must_exist and not database_path.is_file():
             raise DatabaseError(f"database {database_path!r} does not exist")
         
         super().__init__()
         self.database_path = database_path
-
 
     def connect(self):
         """
@@ -40,7 +40,6 @@ class Database(object):
         self.connection = sqlite3.connect(self.database_path)
         self.connection.row_factory = sqlite3.Row
 
-
     def cursor(self):
         """
         create a cursor on the database
@@ -50,7 +49,6 @@ class Database(object):
             raise DatabaseError(f"not connected to {self.database_path!r}")
 
         return self.connection.cursor()
-
 
     def execute(self, command, *args, **kwargs):
         """
@@ -65,7 +63,6 @@ class Database(object):
 
         return self.connection.execute(command, *args, **kwargs)
 
-
     def executemany(self, command, args):
         """
         execute a command on the database
@@ -78,7 +75,6 @@ class Database(object):
 
         return self.connection.executemany(command, args)
 
-
     def executescript(self, script):
         """
         execute a command on the database
@@ -89,7 +85,6 @@ class Database(object):
             raise DatabaseError(f"not connected to {self.database_path!r}")
 
         return self.connection.executescript(script)
-
 
     def disconnect(self, success=True):
         """
@@ -107,7 +102,6 @@ class Database(object):
 
         self.connection.close()
         self.connection = None
-
 
     # --- context manager interface ---
 
