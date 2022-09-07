@@ -1,9 +1,13 @@
 """
 output - output table rows
 """
+from typing import Any
 
 
-def _collect_database_rows(rows):
+Table = list[list[Any]]
+
+
+def _collect_database_rows(rows) -> Table:
     """
     collect rows into a table with a header
     :param rows: source for database rows - a row is a dict
@@ -17,7 +21,7 @@ def _collect_database_rows(rows):
     return table
 
 
-def _compute_column_widths(table):
+def _compute_column_widths(table: Table) -> list[int]:
     """
     compute the width of each column in a table
     :param table: a list of lists
@@ -30,7 +34,7 @@ def _compute_column_widths(table):
     return widths
 
 
-def _make_row_format(widths, sample_row):
+def _make_row_format(widths: list[int], sample_row: list[Any]) -> str:
     """
     create a format string for the widths
     :param widths: sequence of numbers
@@ -56,7 +60,7 @@ def _make_row_format(widths, sample_row):
     return "|".join(parts)
 
 
-def _make_separator(header_format):
+def _make_separator(header_format) -> str:
     """
     create a separator string
     :param header_format: header format used as a template
@@ -72,16 +76,16 @@ def database_rows(rows):
     print rows from a database
     :param rows: source for database rows
     """
-    table = _collect_database_rows(rows)
+    table: Table = _collect_database_rows(rows)
     nrows = len(table)-1  # table includes header
     if nrows < 1:
         print("no rows")
         return
 
-    column_widths = _compute_column_widths(table)
-    header_format = _make_row_format(column_widths, table[0])
-    row_format = _make_row_format(column_widths, table[1])
-    separator = _make_separator(header_format)
+    column_widths: list[int] = _compute_column_widths(table)
+    header_format: str = _make_row_format(column_widths, table[0])
+    row_format: str = _make_row_format(column_widths, table[1])
+    separator: str = _make_separator(header_format)
 
     for rownr, row in enumerate(table):
         if rownr == 0:  # header

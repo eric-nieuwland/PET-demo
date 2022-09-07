@@ -5,6 +5,7 @@ This script is the starting point.
 It defines a simple database with one table to hold the contact info.
 Adding rows of data is straight forward, as is retrieving data.
 """
+from pathlib import Path
 
 from common import contacts
 from common import util
@@ -12,7 +13,7 @@ from common import database
 from common import output
 
 
-def create_database(database_path):
+def create_database(database_path: Path):
     """
     create a fresh database
     :param database_path: path to the database file
@@ -29,7 +30,7 @@ def create_database(database_path):
         """)
 
 
-def fill_database(database_path):
+def fill_database(database_path: Path):
     """
     fill a database with sample data
     :param database_path: path to the database file
@@ -38,7 +39,7 @@ def fill_database(database_path):
         db.executemany("INSERT INTO contact VALUES (?, ?, ?, ?)", contacts.CONTACTS)
 
 
-def read_database(database_path):
+def read_database(database_path: Path):
     """
     read a database and produce the rows
     :param database_path: path to the database file
@@ -49,7 +50,7 @@ def read_database(database_path):
 
 
 def main():
-    p = util.make_database_path(__file__)
+    p: Path = util.make_database_path(__file__)
     if not p.is_file():
         create_database(p)
         fill_database(p)

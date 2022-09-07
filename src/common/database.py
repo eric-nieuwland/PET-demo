@@ -17,7 +17,7 @@ class Database(object):
     database_path = None
     connection = None
 
-    def __init__(self, database_path: Path | str, must_exist=True):
+    def __init__(self, database_path: Path | str, must_exist: bool = True):
         """
         define a sqlite3 database
         :param database_path: path to the database file
@@ -86,7 +86,7 @@ class Database(object):
 
         return self.connection.executescript(script)
 
-    def disconnect(self, success=True):
+    def disconnect(self, success: bool = True):
         """
         disconnect from the database
         :param success: whether processing was successful and should be persisted
@@ -115,7 +115,7 @@ class Database(object):
         # will handle the database context ourselves
         return self
 
-    def __exit__(self, exc_type, exc_val, exc_tb):
+    def __exit__(self, exc_type, exc_val, exc_tb) -> bool:
         """
         terminate a database context - the arguments tell whether the termination is regular or by exception
         :param exc_type: exception type or None

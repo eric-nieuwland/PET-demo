@@ -2,6 +2,7 @@
 PET demo - fourth iteration
 
 """
+from pathlib import Path
 
 from common import contacts
 from common import util
@@ -15,7 +16,7 @@ KEY_EMAIL = 2
 KEY_IDENTIFICATION = 3
 
 
-def create_database(database_path):
+def create_database(database_path: Path):
     """
     create a fresh database
     :param database_path: path to the database file
@@ -43,7 +44,7 @@ def create_database(database_path):
         """)
 
 
-def fill_database(database_path):
+def fill_database(database_path: Path):
     """
     fill a database with sample data
     :param database_path: path to the database file
@@ -68,7 +69,7 @@ def fill_database(database_path):
             )
 
 
-def read_database(database_path):
+def read_database(database_path: Path):
     """
     read a database and produce the rows
     :param database_path: path to the database file
@@ -95,7 +96,7 @@ def read_database(database_path):
 
 
 def main():
-    p = util.make_database_path(__file__)
+    p: Path = util.make_database_path(__file__)
     if not p.is_file():
         create_database(p)
         fill_database(p)

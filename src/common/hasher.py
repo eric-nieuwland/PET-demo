@@ -6,7 +6,7 @@ import base64
 DEFAULT_HASH_KEY = b'1234567890'
 
 
-def _number_to_bytes(number):
+def _number_to_bytes(number) -> bytes:
     """
     turn the absolute value of a number into bytes
     :param number: numeric value
@@ -24,7 +24,7 @@ def _number_to_bytes(number):
     return bytes(parts)
 
 
-def make_hash(message, key=None):
+def make_hash(message, key=None) -> str:
     """
     transform a message into a hash - optionally with a key
     :param message: message to hash
@@ -57,7 +57,7 @@ def make_hash(message, key=None):
     return dig_base64
 
 
-def make_id_hash(id_, key=None):
+def make_id_hash(id_, key=None) -> str:
     """
     transform an id (i.e. integer) into a hash  - optionally with a key
     :param id_: id to hash

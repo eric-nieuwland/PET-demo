@@ -4,7 +4,7 @@ util - various common utilities
 from pathlib import Path
 
 
-def make_database_path(path: str | Path) -> Path:
+def make_database_path(path: str) -> Path:
     """
     turn a file path into a database path
     :param path: file path
